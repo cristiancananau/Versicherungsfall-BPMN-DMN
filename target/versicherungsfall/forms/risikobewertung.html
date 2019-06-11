@@ -1,0 +1,92 @@
+<form name="generatedForm" role="form" class="ng-valid ng-scope ng-valid-cam-variable-type ng-valid-parse ng-pristine">
+    <div class="form-group">
+        <label for="KundenName">
+            Bitte tragen Sie den Name des Fahrers ein.
+        </label>
+        <input class="form-control ng-pristine ng-untouched ng-valid ng-valid-cam-variable-type ng-empty" name="KundenName" cam-variable-type="String" cam-variable-name="KundenName" type="text" ng-model="KundenName" required>
+    </div>
+    <div class="form-group">
+        <label for="KundenVorname">
+            Bitte tragen Sie den Vorname des Fahrers ein.
+        </label>
+        <input class="form-control ng-pristine ng-untouched ng-valid ng-valid-cam-variable-type ng-empty" name="KundenVorname" cam-variable-type="String" cam-variable-name="KundenVorname" type="text" ng-model="KundenVorname" required>
+    </div>
+    <div class="form-group">
+        <label for="KundenEmail">
+            Bitte tragen Sie die Email-Adresse des Fahrers ein.
+        </label>
+        <input class="form-control ng-pristine ng-untouched ng-valid ng-valid-cam-variable-type ng-empty" name="KundenEmail" type="email" cam-variable-type="String" cam-variable-name="KundenEmail" type="text" ng-model="KundenEmail" required>
+    </div>
+    <div class="form-group">
+        <label for="ps">
+            Hat das Auto mehr als 300 PS?
+        </label>
+        <input class="form-control ng-untouched ng-valid ng-valid-cam-variable-type ng-not-empty ng-pristine" name="ps" cam-variable-type="Boolean" cam-variable-name="ps" type="checkbox" ng-model="ps">
+    </div>
+    <div class="form-group">
+        <label for="laenge">
+            Geben Sie bitte die L&#228;nge des Autos ein.
+        </label>
+        <input class="form-control ng-pristine ng-untouched ng-valid ng-valid-cam-variable-type ng-empty" name="laenge" cam-variable-type="Long" cam-variable-name="laenge" type="text" ng-model="laenge" required>
+    </div>
+    <div class="form-group">
+        <label for="autoTyp">
+            Bitte w&#228;hlen Sie den Typ des Autos aus.
+        </label>
+        <select class="form-control ng-untouched ng-valid ng-valid-cam-variable-type ng-not-empty ng-valid-parse ng-pristine" name="autoTyp" cam-variable-type="String" cam-variable-name="autoTyp" ng-model="autoTyp">
+            <option value="Oldtimer">
+                Oldtimer
+            </option>
+            <option value="SUV">
+                SUV
+            </option>
+            <option value="Cabrio">
+                Cabrio
+            </option>
+            <option value="Kombi">
+                Kombi
+            </option>
+            <option value="Sportwagen">
+                Sportwagen
+            </option>
+            <option value="Gelaendewagen">
+                Gel&#228;ndewagen
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="geschlechtFahrer">
+            Bitte geben Sie das Geschlecht des Fahrers an.
+        </label>
+        <select class="form-control ng-untouched ng-valid ng-valid-cam-variable-type ng-not-empty ng-valid-parse ng-pristine" name="geschlechtFahrer" cam-variable-type="String" cam-variable-name="geschlechtFahrer" ng-model="geschlechtFahrer">
+            <option value="maennlich">
+                m&#228;nnlich
+            </option>
+            <option value="weiblich">
+                weiblich
+            </option>
+            <option value="divers">
+                divers
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="alterFahrer">
+            Bitte geben Sie das Alter des Fahrers ein.
+        </label>
+        <input class="form-control ng-pristine ng-untouched ng-valid ng-valid-cam-variable-type ng-empty" name="alterFahrer" cam-variable-type="Long" cam-variable-name="alterFahrer" type="text" ng-model="alterFahrer" required>
+    </div>
+    <div class="form-group">
+        <label for="ausstellungsdatumFuehrerschein">
+            Bitte tragen Sie das Ausstellungsdatum des Fuehrerscheines ein.
+        </label>
+        <div class="input-group">
+            <input class="form-control ng-pristine ng-valid ng-valid-cam-variable-type ng-empty ng-touched" name="ausstellungsdatumFuehrerschein" cam-variable-type="String" cam-variable-name="ausstellungsdatumFuehrerschein" type="text" datepicker-popup="dd/MM/yyyy" is-open="dateFieldOpenedausstellungsdatumFuehrerschein" ng-model="ausstellungsdatumFuehrerschein" required>
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openausstellungsdatumFuehrerschein($event)">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

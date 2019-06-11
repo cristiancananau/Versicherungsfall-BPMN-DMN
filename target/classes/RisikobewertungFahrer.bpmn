@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_08abtzw" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.1">
+  <bpmn:process id="Risikobewertung-Fahrer" isExecutable="true">
+    <bpmn:exclusiveGateway id="ExclusiveGateway_0tukvvc" name="Vorstrafen vorhanden?">
+      <bpmn:incoming>SequenceFlow_1gmm0yb</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0s0fvhl</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1irtqq0</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sendTask id="SendTask_0hqsr7c" name="Absage schicken" camunda:class="org.camunda.versicherung.AbsageVorstrafenSenden">
+      <bpmn:incoming>SequenceFlow_0s0fvhl</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1rtd1d3</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:endEvent id="EndEvent_0ppm9t4" name="Registerabfrage abgeschlossen">
+      <bpmn:incoming>SequenceFlow_0zjt1m2</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="UserTask_10qgmpw" name="Vorstrafenregister checken" camunda:assignee="demo">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="strafe" label="Besitzt der Fahrer Vorstrafen?" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_11o7cdh</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1gmm0yb</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="UserTask_0wz32ff" name="Fahreignungsregister checken" camunda:formKey="embedded:app:forms/FahreignungsregisterChecken.html" camunda:assignee="demo">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="PunkteFlensburg" label="Bitte geben Sie die Punkte-Auskunft aus dem Fahreignungsregister an." type="long" defaultValue="0" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1irtqq0</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0zjt1m2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="EndEvent_1rbdnot" name="Absage gemeldet">
+      <bpmn:incoming>SequenceFlow_1rtd1d3</bpmn:incoming>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_0bt5k6f" errorRef="Error_1ern2lr" />
+    </bpmn:endEvent>
+    <bpmn:startEvent id="StartEvent_1sy571z" name="Registerabfrage starten">
+      <bpmn:outgoing>SequenceFlow_11o7cdh</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1gmm0yb" sourceRef="UserTask_10qgmpw" targetRef="ExclusiveGateway_0tukvvc" />
+    <bpmn:sequenceFlow id="SequenceFlow_0s0fvhl" name="Ja" sourceRef="ExclusiveGateway_0tukvvc" targetRef="SendTask_0hqsr7c">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${strafe}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="SequenceFlow_1irtqq0" name="Nein" sourceRef="ExclusiveGateway_0tukvvc" targetRef="UserTask_0wz32ff">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!strafe}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="SequenceFlow_1rtd1d3" sourceRef="SendTask_0hqsr7c" targetRef="EndEvent_1rbdnot" />
+    <bpmn:sequenceFlow id="SequenceFlow_0zjt1m2" sourceRef="UserTask_0wz32ff" targetRef="EndEvent_0ppm9t4" />
+    <bpmn:sequenceFlow id="SequenceFlow_11o7cdh" sourceRef="StartEvent_1sy571z" targetRef="UserTask_10qgmpw" />
+  </bpmn:process>
+  <bpmn:error id="Error_1ern2lr" name="Error_name" errorCode="Error_name" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Risikobewertung-Fahrer">
+      <bpmndi:BPMNShape id="StartEvent_1sy571z_di" bpmnElement="StartEvent_1sy571z">
+        <dc:Bounds x="177" y="156" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="156" y="199" width="79" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ExclusiveGateway_0tukvvc_di" bpmnElement="ExclusiveGateway_0tukvvc" isMarkerVisible="true">
+        <dc:Bounds x="405" y="149" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="367" y="122" width="58" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="SendTask_0hqsr7c_di" bpmnElement="SendTask_0hqsr7c">
+        <dc:Bounds x="492" y="179" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0ppm9t4_di" bpmnElement="EndEvent_0ppm9t4">
+        <dc:Bounds x="665" y="103" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="644" y="146" width="79" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_10qgmpw_di" bpmnElement="UserTask_10qgmpw">
+        <dc:Bounds x="261" y="134" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_0wz32ff_di" bpmnElement="UserTask_0wz32ff">
+        <dc:Bounds x="492" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1rbdnot_di" bpmnElement="EndEvent_1rbdnot">
+        <dc:Bounds x="665" y="201" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="640" y="244" width="86" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_11o7cdh_di" bpmnElement="SequenceFlow_11o7cdh">
+        <di:waypoint x="213" y="174" />
+        <di:waypoint x="261" y="174" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1gmm0yb_di" bpmnElement="SequenceFlow_1gmm0yb">
+        <di:waypoint x="361" y="174" />
+        <di:waypoint x="405" y="174" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0s0fvhl_di" bpmnElement="SequenceFlow_0s0fvhl">
+        <di:waypoint x="430" y="199" />
+        <di:waypoint x="430" y="219" />
+        <di:waypoint x="492" y="219" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="454" y="203" width="12" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1rtd1d3_di" bpmnElement="SequenceFlow_1rtd1d3">
+        <di:waypoint x="592" y="219" />
+        <di:waypoint x="665" y="219" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0zjt1m2_di" bpmnElement="SequenceFlow_0zjt1m2">
+        <di:waypoint x="592" y="121" />
+        <di:waypoint x="665" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1irtqq0_di" bpmnElement="SequenceFlow_1irtqq0">
+        <di:waypoint x="430" y="149" />
+        <di:waypoint x="430" y="121" />
+        <di:waypoint x="492" y="121" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="443" y="129" width="23" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

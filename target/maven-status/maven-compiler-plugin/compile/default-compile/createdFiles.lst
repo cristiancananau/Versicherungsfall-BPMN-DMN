@@ -1,0 +1,8 @@
+org\camunda\versicherung\AngebotErstellen.class
+org\camunda\versicherung\CreateWordDocument.class
+org\camunda\versicherung\AbsageFahreignungsregisterSenden.class
+org\camunda\versicherung\EmailKonfigurationen.class
+org\camunda\versicherung\AbsageVorstrafenSenden.class
+org\camunda\versicherung\AngebotSenden.class
+org\camunda\versicherung\StartKlasse.class
+org\camunda\versicherung\EmailKonfigurationen$1.class

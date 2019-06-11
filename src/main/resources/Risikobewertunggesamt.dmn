@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="gesamtrisikoid" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.0.1">
+  <businessKnowledgeModel id="BusinessKnowledgeModel_130xkhq" name="Interne Verrechnungsvorschriften">
+    <extensionElements>
+      <biodi:bounds x="711" y="88" width="135" height="46" />
+      <biodi:edge source="KnowledgeSource_1t8xtkw">
+        <biodi:waypoints x="611" y="111" />
+        <biodi:waypoints x="711" y="111" />
+      </biodi:edge>
+    </extensionElements>
+    <authorityRequirement>
+      <requiredAuthority href="#KnowledgeSource_1t8xtkw" />
+    </authorityRequirement>
+  </businessKnowledgeModel>
+  <knowledgeSource id="KnowledgeSource_1t8xtkw" name="Risikobewertung&#10;§ 15 Bewertung">
+    <extensionElements>
+      <biodi:bounds x="511" y="81" width="100" height="63" />
+      <biodi:edge source="Decision_13nychf">
+        <biodi:waypoints x="676" y="206" />
+        <biodi:waypoints x="773" y="128" />
+      </biodi:edge>
+    </extensionElements>
+    <authorityRequirement>
+      <requiredDecision href="#Decision_13nychf" />
+    </authorityRequirement>
+  </knowledgeSource>
+  <inputData id="InputData_0hoow8a" name="risikoAuto">
+    <extensionElements>
+      <biodi:bounds x="414" y="338" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_1ks04fa" name="gesamtRisikoFahrer">
+    <extensionElements>
+      <biodi:bounds x="122" y="446" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <decision id="Risikobewertung" name="Risikobewertung">
+    <extensionElements>
+      <biodi:bounds x="474" y="198" width="180" height="80" />
+      <biodi:edge source="fahrerID">
+        <biodi:waypoints x="470" y="355" />
+        <biodi:waypoints x="560" y="288" />
+      </biodi:edge>
+      <biodi:edge source="autoID">
+        <biodi:waypoints x="942" y="381" />
+        <biodi:waypoints x="676" y="286" />
+      </biodi:edge>
+      <biodi:edge source="autoID">
+        <biodi:waypoints x="942" y="380" />
+        <biodi:waypoints x="687" y="286" />
+      </biodi:edge>
+      <biodi:edge source="KnowledgeSource_1t8xtkw">
+        <biodi:waypoints x="562" y="144" />
+        <biodi:waypoints x="563" y="198" />
+      </biodi:edge>
+      <biodi:edge source="Decision_1lhve01">
+        <biodi:waypoints x="276" y="308" />
+        <biodi:waypoints x="468" y="238" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredDecision href="#Decision_1lhve01" />
+    </informationRequirement>
+    <authorityRequirement>
+      <requiredAuthority href="#KnowledgeSource_1t8xtkw" />
+    </authorityRequirement>
+    <decisionTable id="decisionTable_1">
+      <input id="InputClause_1vli9sl" label="Gesamtrisiko">
+        <inputExpression id="LiteralExpression_05irote" typeRef="double">
+          <text>gesamtRisiko</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Einstufung des Risikos" name="einstufungRisiko" typeRef="string" />
+      <rule id="DecisionRule_00vyy1a">
+        <inputEntry id="UnaryTests_1trekyp">
+          <text>15</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1kgc59p">
+          <text>"Nach ausführlicher Prüfung stufen wir Ihr Risiko als sehr gering ein und können Ihnen einen Versicherungssatz von 300€/Jahr anbieten."</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_17h2oe6">
+        <inputEntry id="UnaryTests_05ga7sm">
+          <text>(15..179]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0d605oi">
+          <text>"Nach ausführlicher Prüfung stufen wir Ihr Risiko als gering ein und können Ihnen einen Versicherungssatz von 450€/Jahr anbieten."</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0v6vdjg">
+        <inputEntry id="UnaryTests_1nownqv">
+          <text>(179..344]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1jry2ac">
+          <text>"Nach ausführlicher Prüfung stufen wir Ihr Risiko als durchschnittlich ein und können Ihnen einen Versicherungssatz von 600€/Jahr anbieten."</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1b0on4i">
+        <inputEntry id="UnaryTests_1pcgcg9">
+          <text>(344..510)</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1dnci20">
+          <text>"Nach ausführlicher Prüfung stufen wir Ihr Risiko als hoch ein und können Ihnen einen Versicherungssatz von 700€/Jahr anbieten."</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1a8jdrk">
+        <inputEntry id="UnaryTests_109mlc0">
+          <text>510</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0lskq4r">
+          <text>"Nach ausführlicher Prüfung stufen wir Ihr Risiko als sehr hoch ein und können Ihnen einen Versicherungssatz von 1000€/Jahr anbieten."</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0o7u3hd">
+        <inputEntry id="UnaryTests_0cl8p71">
+          <text>0</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0woh4ng">
+          <text>"Kein Angebot erstellbar."</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Decision_1lhve01" name="Risikokalkulation">
+    <extensionElements>
+      <biodi:bounds x="186" y="311" width="180" height="80" />
+      <biodi:edge source="InputData_1ks04fa">
+        <biodi:waypoints x="201" y="446" />
+        <biodi:waypoints x="238" y="391" />
+      </biodi:edge>
+      <biodi:edge source="InputData_0hoow8a">
+        <biodi:waypoints x="414" y="364" />
+        <biodi:waypoints x="366" y="366" />
+      </biodi:edge>
+    </extensionElements>
+    <variable id="InformationItem_1hy6wlj" name="gesamtRisiko" typeRef="double" />
+    <informationRequirement>
+      <requiredInput href="#InputData_1ks04fa" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_0hoow8a" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_1w3dplw" expressionLanguage="javascript">
+      <text>risikoAuto*gesamtRisikoFahrer</text>
+    </literalExpression>
+  </decision>
+  <decision id="OutputslisteID" name="Outputsliste">
+    <extensionElements>
+      <biodi:bounds x="809" y="305" width="180" height="80" />
+      <biodi:edge source="Risikobewertung">
+        <biodi:waypoints x="655" y="238" />
+        <biodi:waypoints x="899" y="302" />
+      </biodi:edge>
+    </extensionElements>
+    <variable id="InformationItem_1kl0f8c" name="outputsListe" />
+    <informationRequirement>
+      <requiredDecision href="#Risikobewertung" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_0472n3s" expressionLanguage="groovy">
+      <text>def outputsListe = [];
+
+outputsListe.addAll(risikoAuto);
+outputsListe.addAll(gesamtRisikoFahrer);
+outputsListe.addAll(einstufungRisiko);
+outputsListe.addAll(gesamtRisiko);
+
+return outputsListe</text>
+    </literalExpression>
+  </decision>
+</definitions>

@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="fahrerid" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.0.1">
+  <inputData id="InputData_01hv86u" name="Dauer Führerscheinbesitz">
+    <extensionElements>
+      <biodi:bounds x="653" y="665" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_0hoow8a" name="Punkte in Flensburg">
+    <extensionElements>
+      <biodi:bounds x="494" y="440" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_1noo3an" name="Geschlecht">
+    <extensionElements>
+      <biodi:bounds x="495" y="670" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_0m10g0h" name="Alter">
+    <extensionElements>
+      <biodi:bounds x="344" y="674" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <decision id="fahrerID" name="Fahrer">
+    <extensionElements>
+      <biodi:bounds x="493" y="550" width="180" height="80" />
+      <biodi:edge source="InputData_1ks04fa">
+        <biodi:waypoints x="1015" y="434" />
+        <biodi:waypoints x="316" y="380" />
+      </biodi:edge>
+      <biodi:edge source="InputData_1noo3an">
+        <biodi:waypoints x="560" y="670" />
+        <biodi:waypoints x="583" y="630" />
+      </biodi:edge>
+      <biodi:edge source="InputData_01hv86u">
+        <biodi:waypoints x="686" y="665" />
+        <biodi:waypoints x="633" y="630" />
+      </biodi:edge>
+      <biodi:edge source="InputData_0m10g0h">
+        <biodi:waypoints x="440" y="674" />
+        <biodi:waypoints x="510" y="630" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#InputData_1noo3an" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_01hv86u" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_0m10g0h" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0qwjp6u">
+      <input id="InputClause_0wgi1zq" label="Geschlecht">
+        <inputExpression id="LiteralExpression_05l88ss" typeRef="string">
+          <text>geschlechtFahrer</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1drkdcy" label="Alter">
+        <inputExpression id="LiteralExpression_1brg2tc" typeRef="integer">
+          <text>alterFahrer</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1nvcqx5" label="Ausstellungsdatum Führerschein">
+        <inputExpression id="LiteralExpression_1b1q84m" typeRef="date">
+          <text>ausstellungsdatumFuehrerschein</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_0py8j9m" label="Risikofaktor" name="risikoFahrer" typeRef="double" />
+      <rule id="DecisionRule_1021dd5">
+        <inputEntry id="UnaryTests_1hqs4k7">
+          <text>"maennlich"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19oujf5">
+          <text>[18..24]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ar7g0f">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0wulp7s">
+          <text>2.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1s5mexd">
+        <inputEntry id="UnaryTests_0docfu7">
+          <text>"maennlich"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0z73npy">
+          <text>[25..49],[50..70]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1q6tv55">
+          <text>[date and time("2015-01-01T00:00:00")..date and time("2020-01-01T00:00:00")]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_07fywo6">
+          <text>1.50</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0az919j">
+        <inputEntry id="UnaryTests_0dhy08g">
+          <text>"maennlich"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pmal96">
+          <text>[25..49],[50..70]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mvlhwk">
+          <text>[date and time("2010-01-01T00:00:00")..date and time("2014-12-31T23:59:59")]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0b20pof">
+          <text>1.25</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1wkz0hi">
+        <inputEntry id="UnaryTests_0ng6plg">
+          <text>"maennlich"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_12ztwr3">
+          <text>[25..49]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ewo062">
+          <text>&lt; date and time("2010-01-01T00:00:00")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1sx71v3">
+          <text>1.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0mcg7d7">
+        <inputEntry id="UnaryTests_0qjeits">
+          <text>"maennlich"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mcbwiq">
+          <text>[50..70]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1orglhq">
+          <text>&lt; date and time("2010-01-01T00:00:00")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03xjln4">
+          <text>1.25</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0bw27nv">
+        <inputEntry id="UnaryTests_1txqrsr">
+          <text>"maennlich"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0h4f7uw">
+          <text>&gt; 70</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1izhn4g">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04u6dbr">
+          <text>2.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_118tzdm">
+        <inputEntry id="UnaryTests_1ejlic6">
+          <text>"weiblich"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_078evrx">
+          <text>[18..24]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1lmiiwu">
+          <text>[date and time("2015-01-01T00:00:00")..date and time("2020-01-01T00:00:00")]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1vnbs7s">
+          <text>1.50</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0xdk95m">
+        <inputEntry id="UnaryTests_0qf438e">
+          <text>"weiblich"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1b4beok">
+          <text>[18..24],[50..70]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08lcxuv">
+          <text>[date and time("2010-01-01T00:00:00")..date and time("2014-12-31T23:59:59")]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_045jay6">
+          <text>1.25</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0qrb72p">
+        <inputEntry id="UnaryTests_0bg7sho">
+          <text>"weiblich"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0lf3555">
+          <text>[25..49],[50..70]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pjav20">
+          <text>[date and time("2015-01-01T00:00:00")..date and time("2020-01-01T00:00:00")]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1gg3y15">
+          <text>1.50</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_01fxmyo">
+        <inputEntry id="UnaryTests_1eov1gx">
+          <text>"weiblich"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0kusbue">
+          <text>[25..49]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02s9gtc">
+          <text>[date and time("2010-01-01T00:00:00")..date and time("2014-12-31T23:59:59")]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1raaacd">
+          <text>1.25</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0qg15et">
+        <inputEntry id="UnaryTests_1k6uenz">
+          <text>"weiblich"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xq87l1">
+          <text>[25..49]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_115w5m5">
+          <text>&lt; date and time("2010-01-01T00:00:00")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_134t88c">
+          <text>1.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1922wyp">
+        <inputEntry id="UnaryTests_1okq3m2">
+          <text>"weiblich"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jowbxg">
+          <text>[50..70]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04cirma">
+          <text>&lt; date and time("2010-01-01T00:00:00")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_19iu0fo">
+          <text>1.25</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_06v4rrd">
+        <inputEntry id="UnaryTests_0gaqrr4">
+          <text>"weiblich"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06wlz2t">
+          <text>&gt; 70</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0274uk3">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1n7igah">
+          <text>2.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0yccnh4">
+        <inputEntry id="UnaryTests_179yk4u">
+          <text>"divers"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0tn47m4">
+          <text>[18..24]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0oav0zh">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_01whlrc">
+          <text>2.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ryc582">
+        <inputEntry id="UnaryTests_09d6n3v">
+          <text>"divers"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0sjtwwj">
+          <text>[25..49],[50..70]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1eg5e8x">
+          <text>[date and time("2015-01-01T00:00:00")..date and time("2020-01-01T00:00:00")]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ds2278">
+          <text>1.50</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0yxve8n">
+        <inputEntry id="UnaryTests_0l0sleo">
+          <text>"divers"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08yz98k">
+          <text>[25..49],[50..70]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1b8qadh">
+          <text>[date and time("2010-01-01T00:00:00")..date and time("2014-12-31T23:59:59")]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1szc7j2">
+          <text>1.25</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0nsfog6">
+        <inputEntry id="UnaryTests_1qnfbwk">
+          <text>"divers"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pr8w4e">
+          <text>[25..49]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0gf53wx">
+          <text>&lt; date and time("2010-01-01T00:00:00")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0d039mw">
+          <text>1.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1nihqrp">
+        <inputEntry id="UnaryTests_0hep1z5">
+          <text>"divers"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jrv3s4">
+          <text>[50..70]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ddtbc3">
+          <text>&lt; date and time("2010-01-01T00:00:00")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1awtluh">
+          <text>1.25</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0wha5ax">
+        <inputEntry id="UnaryTests_1lta3ae">
+          <text>"divers"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0d9nv8p">
+          <text>&gt; 70</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_14fi04w">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0awmyor">
+          <text>2.00</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="risikobewertungFahrer" name="Gesamtrisiko Fahrer">
+    <extensionElements>
+      <biodi:bounds x="186" y="311" width="180" height="80" />
+      <biodi:edge source="fahrerID">
+        <biodi:waypoints x="488" y="590" />
+        <biodi:waypoints x="260" y="395" />
+      </biodi:edge>
+      <biodi:edge source="autoID">
+        <biodi:waypoints x="473" y="350" />
+        <biodi:waypoints x="367" y="351" />
+      </biodi:edge>
+    </extensionElements>
+    <variable id="InformationItem_1hy6wlj" name="gesamtRisikoFahrer" typeRef="double" />
+    <informationRequirement>
+      <requiredDecision href="#fahrerID" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredDecision href="#autoID" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_1w3dplw" expressionLanguage="javascript">
+      <text>risikoFahrer*PunkteFaktor</text>
+    </literalExpression>
+  </decision>
+  <decision id="autoID" name="Punkteflensburg">
+    <extensionElements>
+      <biodi:bounds x="479" y="310" width="180" height="80" />
+      <biodi:edge source="InputData_1noo3an">
+        <biodi:waypoints x="236" y="453" />
+        <biodi:waypoints x="801" y="382" />
+      </biodi:edge>
+      <biodi:edge source="InputData_0hoow8a">
+        <biodi:waypoints x="573" y="440" />
+        <biodi:waypoints x="569" y="391" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#InputData_0hoow8a" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_031qvk3">
+      <input id="InputClause_0tu1x1f" label="PunkteFlensburg">
+        <inputExpression id="LiteralExpression_1p8lutl" typeRef="double">
+          <text>PunkteFlensburg</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_1i8q5p7" label="PunkteFaktor" name="PunkteFaktor" typeRef="double" />
+      <rule id="DecisionRule_0k272pb">
+        <inputEntry id="UnaryTests_0hyn4y4">
+          <text>0</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1jg33o0">
+          <text>1.0</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0d8zpu0">
+        <inputEntry id="UnaryTests_1tz79c0">
+          <text>1</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ee4nj1">
+          <text>1.1</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0hu9568">
+        <inputEntry id="UnaryTests_1yq1mh3">
+          <text>2</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0jgkcen">
+          <text>1.2</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_17qvlf2">
+        <inputEntry id="UnaryTests_19mh3sk">
+          <text>3</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1dfphb1">
+          <text>1.3</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0nag1h2">
+        <inputEntry id="UnaryTests_0mt6srm">
+          <text>4</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_026vvts">
+          <text>1.4</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1k24au8">
+        <inputEntry id="UnaryTests_1fq6kiq">
+          <text>5</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1no3so2">
+          <text>1.5</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0vu6qzy">
+        <inputEntry id="UnaryTests_0td9vfy">
+          <text>6</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_037j9s9">
+          <text>1.6</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1iucn28">
+        <inputEntry id="UnaryTests_0lvn1pp">
+          <text>7</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0fcyu2h">
+          <text>1.7</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0fldyjc">
+        <inputEntry id="UnaryTests_1nabp83">
+          <text>8</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1yvv3kq">
+          <text>0.0</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>

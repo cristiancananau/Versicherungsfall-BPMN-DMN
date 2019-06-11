@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="autoid" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.0.1">
+  <inputData id="InputData_0hoow8a" name="PS">
+    <extensionElements>
+      <biodi:bounds x="420" y="436" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_1ks04fa" name="Länge">
+    <extensionElements>
+      <biodi:bounds x="603" y="437" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <decision id="risikobewertungAuto" name="Auto">
+    <extensionElements>
+      <biodi:bounds x="479" y="310" width="180" height="80" />
+      <biodi:edge source="InputData_1noo3an">
+        <biodi:waypoints x="236" y="453" />
+        <biodi:waypoints x="801" y="382" />
+      </biodi:edge>
+      <biodi:edge source="InputData_1ks04fa">
+        <biodi:waypoints x="665" y="437" />
+        <biodi:waypoints x="626" y="391" />
+      </biodi:edge>
+      <biodi:edge source="InputData_0hoow8a">
+        <biodi:waypoints x="499" y="436" />
+        <biodi:waypoints x="527" y="393" />
+      </biodi:edge>
+      <biodi:edge source="InputData_1vux0ya">
+        <biodi:waypoints x="390" y="347" />
+        <biodi:waypoints x="479" y="345" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#InputData_1ks04fa" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_0hoow8a" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_1vux0ya" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_031qvk3" hitPolicy="COLLECT" aggregation="SUM">
+      <input id="InputClause_1pz5gpu" label="mehr als 300-PS">
+        <inputExpression id="LiteralExpression_1y375y9" typeRef="boolean">
+          <text>ps</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0tu1x1f" label="Länge (cm)">
+        <inputExpression id="LiteralExpression_1p8lutl" typeRef="double">
+          <text>laenge</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0ae2jh6" label="Typ">
+        <inputExpression id="LiteralExpression_1hf1zju" typeRef="string">
+          <text>autoTyp</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_1i8q5p7" label="Risikoscore" name="risikoAuto" typeRef="double" />
+      <rule id="DecisionRule_0k272pb">
+        <inputEntry id="UnaryTests_1k9qth0">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0hyn4y4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1bhvmhu">
+          <text>not("Oldtimer")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1jg33o0">
+          <text>50.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0d8zpu0">
+        <inputEntry id="UnaryTests_0y0t17u">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1tz79c0">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pvutcu">
+          <text>not("Oldtimer")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ee4nj1">
+          <text>5.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0hu9568">
+        <inputEntry id="UnaryTests_0hrbj16">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yq1mh3">
+          <text>&lt; 4500.00</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0z99l9v">
+          <text>not("Oldtimer")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0jgkcen">
+          <text>5.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_17qvlf2">
+        <inputEntry id="UnaryTests_1qdl8yk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19mh3sk">
+          <text>&gt;= 4500.00</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1myhsqh">
+          <text>not("Oldtimer")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1dfphb1">
+          <text>50.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0nag1h2">
+        <inputEntry id="UnaryTests_1ngrar1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mt6srm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1nk1mvb">
+          <text>"Oldtimer"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_026vvts">
+          <text>150.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1k24au8">
+        <inputEntry id="UnaryTests_07astx7">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fq6kiq">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ttc3f1">
+          <text>"SUV"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1no3so2">
+          <text>5.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0vu6qzy">
+        <inputEntry id="UnaryTests_0xdzu6p">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0td9vfy">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0gbf7ya">
+          <text>"Cabrio"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_037j9s9">
+          <text>50.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1iucn28">
+        <inputEntry id="UnaryTests_0yts6u0">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0lvn1pp">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1p7sk3c">
+          <text>"Kombi"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0fcyu2h">
+          <text>5.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0fldyjc">
+        <inputEntry id="UnaryTests_0wymz9s">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1nabp83">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17est2c">
+          <text>"Sportwagen"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1yvv3kq">
+          <text>50.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1egrsfj">
+        <inputEntry id="UnaryTests_1oz9nd6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05gyvmn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04tfg1o">
+          <text>"Gelaendewagen"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0hc2xxs">
+          <text>50.00</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_1vux0ya" name="Typ">
+    <extensionElements>
+      <biodi:bounds x="265" y="325" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+</definitions>
