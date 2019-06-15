@@ -18,21 +18,21 @@ public class AngebotErstellen implements JavaDelegate {
       Path currentRelativePath = Paths.get("");
       String stringPath = currentRelativePath.toRealPath().toString();
       stringPath = stringPath.substring(0, stringPath.lastIndexOf("\\")+1);
-      String docuentName = kundeName+"-"+kundeVorname+"-Angebot"+".docx";
-      String wordDocPath = stringPath+"webapps\\versicherungsfall\\"+docuentName;
+      String docuentName = kundeName+"-"+kundeVorname+"-Angebot"+".pdf";
+      String pdfDocPath = stringPath+"webapps\\versicherungsfall\\"+docuentName;
      
-      boolean checkIfExist = new File(wordDocPath).exists();
+      boolean checkIfExist = new File(pdfDocPath).exists();
       
       if(checkIfExist) {
-    	  docuentName = docuentName.replaceFirst("[.][^.]+$", "")+"-1.docx";
-    	  wordDocPath = wordDocPath.replaceFirst("[.][^.]+$", "")+"-1.docx";
+    	  docuentName = docuentName.replaceFirst("[.][^.]+$", "")+"-1.pdf";
+    	  pdfDocPath = pdfDocPath.replaceFirst("[.][^.]+$", "")+"-1.pdf";
       }
       
-      execution.setVariable("wordDocPath", wordDocPath);
+      execution.setVariable("pdfDocPath", pdfDocPath);
       execution.setVariable("docuentName", docuentName);
       
-      CreateWordDocument.creatFile(wordDocPath, kundeName+" "+kundeVorname, einstufungRisiko);
+      CreatePDFDocument.creatFile(pdfDocPath, kundeName+" "+kundeVorname, einstufungRisiko);
       
-      System.out.println(wordDocPath);
+      System.out.println(pdfDocPath);
   }
 }

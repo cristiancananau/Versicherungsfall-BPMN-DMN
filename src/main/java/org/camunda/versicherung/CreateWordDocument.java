@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.math.BigInteger;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -22,12 +21,12 @@ public class CreateWordDocument {
 	
    private static XWPFDocument document;
 
-public static void creatFile(String wordDocPath, String name, String einstufungRisiko)throws Exception {
+public static void main(String[] args) throws Exception {
       
       document = new XWPFDocument(); 
       
       //Write the Document in file system
-      FileOutputStream out = new FileOutputStream(new File(wordDocPath));
+      FileOutputStream out = new FileOutputStream(new File("C:\\Users\\cLiFtIxD\\Desktop\\ok.doc"));
         
       XWPFParagraph paragraph = document.createParagraph();
 
@@ -43,7 +42,7 @@ public static void creatFile(String wordDocPath, String name, String einstufungR
       XWPFRun paragraph2Run2 = paragraph.createRun();
       paragraph2Run2.setFontSize(10);
       paragraph2Run2.setFontFamily("Arial");
-      paragraph2Run2.setText(name);
+      paragraph2Run2.setText("Cristian Cananau");
       paragraph2Run2.addBreak();
       
       XWPFRun paragraph1Run3 = paragraph.createRun();
@@ -102,7 +101,7 @@ public static void creatFile(String wordDocPath, String name, String einstufungR
       XWPFRun paragraph4Run1 = paragraph4.createRun();
       paragraph4Run1.setFontSize(11);
       paragraph4Run1.setFontFamily("Arial");
-      paragraph4Run1.setText(einstufungRisiko);
+      paragraph4Run1.setText("some Text");
       paragraph4Run1.addBreak();
       paragraph4Run1.addBreak();
       

@@ -18,8 +18,10 @@ public class AbsageFahreignungsregisterSenden implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 				
 		  String email = (String) execution.getVariable("KundenEmail");
+		  String kundeName = (String) execution.getVariable("KundenName");
+		  String kundeVorname = (String) execution.getVariable("KundenVorname");
 		  String subject = "Ihre Anfrage bei der Loop GmbH";
-		  String content = ("\nGuten Tag lieber Kunde,"
+		  String content = ("\nGuten Tag liebe "+kundeVorname+" "+kundeName+ ","
 				  			+"\n\nleider müssen wir Ihnen aufgrund Prüfung Ihres Fahreignungsregisters mitteilen, dass wir Ihnen kein Angebot unterbreiten können."
 			  				+"\n\nLiebe Grüße"
 				  			+"\nLoop GmbH");

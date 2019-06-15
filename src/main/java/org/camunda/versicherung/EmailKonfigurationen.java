@@ -47,6 +47,9 @@ public class EmailKonfigurationen {
 	        message.setSubject(subject);
 	        message.setText(content);
 
+	        System.out.println("Path is: " + filePath);
+
+	        
 	        if(filePath != null) {
 		         BodyPart messageBodyPart = new MimeBodyPart();
 		         
@@ -60,7 +63,7 @@ public class EmailKonfigurationen {
 		         
 	             InputStream uploadfile = new FileInputStream(filePath);
 	             
-		         ByteArrayDataSource ds = new ByteArrayDataSource(uploadfile, "application/msword"); 	         
+		         ByteArrayDataSource ds = new ByteArrayDataSource(uploadfile, "application/pdf");	         
 
 		         messageBodyPart.setDataHandler(new DataHandler(ds));
 		         messageBodyPart.setFileName(docuentName);

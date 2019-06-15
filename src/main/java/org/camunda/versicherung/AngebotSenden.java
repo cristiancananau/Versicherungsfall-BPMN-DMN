@@ -18,15 +18,17 @@ public class AngebotSenden implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 		
 		  String email = (String) execution.getVariable("KundenEmail");
+		  String kundeName = (String) execution.getVariable("KundenName");
+		  String kundeVorname = (String) execution.getVariable("KundenVorname");
 		  String subject = "Ihre Anfrage bei der Loop GmbH";
-		  String content = ("\nGuten Tag lieber Kunde,"
+		  String content = ("\nGuten Tag liebe "+kundeVorname+" "+kundeName+ ","
 				  			+"\n\nwir freuen uns Ihnen nach ausführlicher Prüfung ein Angebot unterbreiten zu können."
-							+"Dieses ist als Anhang beigefügt. Gerne können Sie an diese Email-Adresse Rückfragen stellen oder das Angebot bestätigen."
+							+"\nDieses ist als Anhang beigefügt. Gerne können Sie an diese Email-Adresse Rückfragen stellen oder das Angebot bestätigen."
 				  			+"\n\nLiebe Grüße"
 				  			+"\nLoop GmbH");	
-		  String wordDocPath = (String) execution.getVariable("wordDocPath");
+		  String pdfDocPath = (String) execution.getVariable("pdfDocPath");
 		  String docuentName = (String) execution.getVariable("docuentName");
 
-		  angebotzukunde(subject, content, email, wordDocPath, docuentName);
+		  angebotzukunde(subject, content, email, pdfDocPath, docuentName);
 	}
 }
