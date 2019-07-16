@@ -26,6 +26,7 @@ Im letzten Prozessschritt, von zweiten Sequenzfluss wird mithilfe eines Service 
 ---
 
 ## 3. Mavenprojekt-Erstellung
+  - https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html und https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html
   - https://www.eclipse.org/downloads/packages/release/2019-03/r/eclipse-ide-java-developers
   - https://docs.camunda.org/get-started/java-process-app/install/
   - Sreenshots und die Schritte
