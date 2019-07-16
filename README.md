@@ -26,7 +26,8 @@ Im letzten Prozessschritt, von zweiten Sequenzfluss wird mithilfe eines Service 
 ---
 
 ## 3. Mavenprojekt-Erstellung
-  -https://www.eclipse.org/downloads/packages/release/2019-03/r/eclipse-ide-java-developers
+  - https://www.eclipse.org/downloads/packages/release/2019-03/r/eclipse-ide-java-developers
+  - https://docs.camunda.org/get-started/java-process-app/install/
   - Sreenshots und die Schritte
   - Erstellung der leere Klasse JavaServlet
 
