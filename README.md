@@ -64,16 +64,17 @@ Im letzten Prozessschritt, von zweiten Sequenzfluss wird mithilfe eines Service 
   ### EmailKonfigurationen
   
 
-
 `public class EmailKonfigurationen {
 	public static void sendMail(String subject, String content, String email, String filePath, String docuentName) throws MessagingException, IOException {
+	
 	    final String username = "mail@gmail.com";
 	    final String password = "password";
+	    
 	    Properties props = new Properties();
 	    props.put("mail.smtp.starttls.enable", "true");
 	    props.put("mail.smtp.auth", "true");
 	    props.put("mail.smtp.host", "smtp.gmail.com");
-	    props.put("mail.smtp.port", "587");`
+	    props.put("mail.smtp.port", "587");
 
 	    `Session session = Session.getInstance(props,
 	      new javax.mail.Authenticator() {
@@ -123,8 +124,8 @@ Im letzten Prozessschritt, von zweiten Sequenzfluss wird mithilfe eines Service 
 	        throw new RuntimeException(e);
 	    }    
 	}
-	} `
-
+	}
+`
 ## 5. Einbindung der HTML-Forms (das bedeutet Formulare)
 
  ---
