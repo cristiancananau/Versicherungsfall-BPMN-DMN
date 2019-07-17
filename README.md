@@ -65,8 +65,8 @@ Im letzten Prozessschritt, von zweiten Sequenzfluss wird mithilfe eines Service 
   
 
 `public class EmailKonfigurationen {
-	public static void sendMail(String subject, String content, String email, String filePath, String docuentName) throws MessagingException, IOException {`
-	
+public static void sendMail(String subject, String content, String email, String filePath, String docuentName) throws MessagingException, IOException {
+
 	    final String username = "mail@gmail.com";
 	    final String password = "password";
 	    
@@ -125,8 +125,9 @@ Im letzten Prozessschritt, von zweiten Sequenzfluss wird mithilfe eines Service 
 	    }    
 	}
 	}
-`
-dsjkbjkdsvbs
+
+Beschreibung:
+
 
 ## 5. Einbindung der HTML-Forms (das bedeutet Formulare)
 
