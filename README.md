@@ -64,7 +64,7 @@ Hier sollen nun der ausmodellierte BPMN-Prozess, sowie die DRD's noch einmal zus
 
 ## 4. Beschreibung der Klassen
 
-Im folgenden werden nun einige Klassen beschrieben, die zur Umsetzung der gegebenen Anforderungen benötigt wurden.
+Im Folgenden werden nun einige Klassen beschrieben, die zur Umsetzung der gegebenen Anforderungen benötigt wurden.
 
   ### EmailKonfigurationen
   
