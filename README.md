@@ -76,7 +76,7 @@ public static void sendMail(String subject, String content, String email, String
 	    props.put("mail.smtp.host", "smtp.gmail.com");
 	    props.put("mail.smtp.port", "587");
 
-	    `Session session = Session.getInstance(props,
+	    Session session = Session.getInstance(props,
 	      new javax.mail.Authenticator() {
 	        protected PasswordAuthentication getPasswordAuthentication() {
 	            return new PasswordAuthentication(username, password);
