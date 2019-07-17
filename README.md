@@ -364,5 +364,8 @@ Durch diese Klasse wird letztlich das PDS-Dokument erstellt, welches dem Kunden 
 	    </div>
 	</form>
 
+
+### Beschreibung:
+Dies ist ein beispielhaftes HTML-Formular (Hier: für die Risikobewertung). Wie ein HTML-Form müssen sich diese im Tag `<form>` befinden. Damit die Camunda-Variablen erkannt werden können, müssen diese vom Aufbau ähnlich wie `cam-variable-type="String" cam-variable-name="ausstellungsdatumFuehrerschein"` aussehen. Die HTML-Forms müssen sich unter `src/main/webapp/<verzeichnisname>` befinden. Die Einbindung der Forms im Camunda-Modeler sieht wie folgt aus:
  
 ## 6. Schluss
