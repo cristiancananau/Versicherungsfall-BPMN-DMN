@@ -68,10 +68,11 @@ Im Folgenden werden nun einige Klassen beschrieben, die zur Umsetzung der gegebe
 
 	public class EmailKonfigurationen {
 	public static void sendMail(String subject, String content, String email, String filePath, String docuentName) throws MessagingException, IOException {
-
+	    //Email username und password
 	    final String username = "mail@gmail.com";
 	    final String password = "password";
 	    
+	    //die Gmail-Konfigurationen
 	    Properties props = new Properties();
 	    props.put("mail.smtp.starttls.enable", "true");
 	    props.put("mail.smtp.auth", "true");
@@ -88,8 +89,10 @@ Im Folgenden werden nun einige Klassen beschrieben, die zur Umsetzung der gegebe
 	    try {
 
 	        Message message = new MimeMessage(session);
+		//die Email-Adresse des Absenders
 	        message.setFrom(new InternetAddress("mail@gmail.com"));
 	        message.setRecipients(Message.RecipientType.TO,
+		//die Email-Adresse des Empfänngers
 	            InternetAddress.parse(email));
 	        message.setSubject(subject);
 	        message.setText(content);
@@ -97,27 +100,31 @@ Im Folgenden werden nun einige Klassen beschrieben, die zur Umsetzung der gegebe
 	        System.out.println("Path is: " + filePath);
 
 	        if(filePath != null) {
-		         BodyPart messageBodyPart = new MimeBodyPart();
-		         
-		         messageBodyPart.setText(content);
+		 BodyPart messageBodyPart = new MimeBodyPart();
+		 //Einfungen des Contentteiles			
+		 messageBodyPart.setText(content);
 
-		         Multipart multipart = new MimeMultipart();
+		 Multipart multipart = new MimeMultipart();
+		 
+		 //mehrere Teilen und Anhang einfügen
+		 multipart.addBodyPart(messageBodyPart);
 
-		         multipart.addBodyPart(messageBodyPart);
+		 messageBodyPart = new MimeBodyPart();
+		 
+		 //PDF-Dokument auslesen        
+	     	 InputStream uploadfile = new FileInputStream(filePath);
+	         
+		 //PDF-Dokument in Byte umwandeln (fürs Schicken)
+		 ByteArrayDataSource ds = new ByteArrayDataSource(uploadfile, "application/pdf");	         
 
-		         messageBodyPart = new MimeBodyPart();
-		         
-	             InputStream uploadfile = new FileInputStream(filePath);
-	             
-		         ByteArrayDataSource ds = new ByteArrayDataSource(uploadfile, "application/pdf");	         
+		 messageBodyPart.setDataHandler(new DataHandler(ds));
+		 messageBodyPart.setFileName(docuentName);
+		 multipart.addBodyPart(messageBodyPart);
 
-		         messageBodyPart.setDataHandler(new DataHandler(ds));
-		         messageBodyPart.setFileName(docuentName);
-		         multipart.addBodyPart(messageBodyPart);
-
-		         message.setContent(multipart);
+		 message.setContent(multipart);
 	        }
 	        
+		//das Senden an sich
 	        Transport.send(message);
 
 	        System.out.println("E-Mail wurde erfolgreich gesendet!");
@@ -135,17 +142,23 @@ wird die E-Mail-Adresse abgefangen. Danach folgen mit `subject` und `content` de
 ### Angebot erstellen
 
 	public class AngebotErstellen implements JavaDelegate {
-
+		
+	  //Delegate-Methode, damit den Inhalt der Methode ausgeführt sein kann	
 	  public void execute(DelegateExecution execution) throws Exception {
-
+		
+	      //auslesen der Camunda-Cockpit Variablen	
 	      String kundeName = (String) execution.getVariable("KundenName");
 	      String kundeVorname = (String) execution.getVariable("KundenVorname");
 	      String einstufungRisiko = (String) execution.getVariable("einstufungRisiko");
-
+	      
+	      //den aktuellen Pfad
 	      Path currentRelativePath = Paths.get("");
 	      String stringPath = currentRelativePath.toRealPath().toString();
 	      stringPath = stringPath.substring(0, stringPath.lastIndexOf("\\")+1);
+	      
+	      //der Name des Dokumentes
 	      String docuentName = kundeName+"-"+kundeVorname+"-Angebot"+".pdf";
+	      //der Pfad + der Dokumentname
 	      String pdfDocPath = stringPath+"webapps\\versicherungsfall\\"+docuentName;
 
 	      boolean checkIfExist = new File(pdfDocPath).exists();
@@ -154,7 +167,8 @@ wird die E-Mail-Adresse abgefangen. Danach folgen mit `subject` und `content` de
 		  docuentName = docuentName.replaceFirst("[.][^.]+$", "")+"-1.pdf";
 		  pdfDocPath = pdfDocPath.replaceFirst("[.][^.]+$", "")+"-1.pdf";
 	      }
-
+	      
+	      //Einfügen einer neue Variable in Camunda-Cockpit (mit setVariable)
 	      execution.setVariable("pdfDocPath", pdfDocPath);
 	      execution.setVariable("docuentName", docuentName);
 
