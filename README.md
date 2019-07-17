@@ -128,7 +128,7 @@ public static void sendMail(String subject, String content, String email, String
 	}
 
 Beschreibung:
-In dieser Klasse werden alle Konfiguration vorgenommen, die für das Versenden einer E-Mail benötigt werden. Die Methode ´sendMail´ erwartet fünf Parameter vom Typ String: ´subject´, ´content´, ´email´, ´filePath´ und ´docuentName´. Dann werden zwei Strings deklariert (´username´ und ´passwort´). Im Anschluss werden die Properties der E-Mail definiert. Im try-catch-Block wird versucht, eine E-Mail zu versenden. Zuerst wird dabei die E-Mail-Adresse des Absenders angegeben. Mit ´message.setRecipients(Message.RecipientType.TO,
+In dieser Klasse werden alle Konfiguration vorgenommen, die für das Versenden einer E-Mail benötigt werden. Die Methode ´sendMail` erwartet fünf Parameter vom Typ String: `subject´, `content´, `email´, `filePath´ und ´docuentName´. Dann werden zwei Strings deklariert (´username` und `passwort`). Im Anschluss werden die Properties der E-Mail definiert. Im try-catch-Block wird versucht, eine E-Mail zu versenden. Zuerst wird dabei die E-Mail-Adresse des Absenders angegeben. Mit ´message.setRecipients(Message.RecipientType.TO,
 	            InternetAddress.parse(email));´
 wird die E-Mail-Adresse abgefangen. Danach folgen mit ´subject´ und ´conten´ der Betreff und Nachrichtentext der E-Mail. In der If-Else-Bedingung wird überprüft, ob der Pfad für eine angehängte PDF-Datei angegeben wurde oder nicht. Wurde dieser angegeben, so wird die Datei als ´ ByteArrayDataSource´ eingelesen und als Anhang der E-Mail beigefügt. Ist kein Pfad vorhanden, so wird die E-Mail ohne Anhang versendet.
 
