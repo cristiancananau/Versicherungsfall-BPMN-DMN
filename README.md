@@ -64,9 +64,8 @@ Im letzten Prozessschritt, von zweiten Sequenzfluss wird mithilfe eines Service 
   ### EmailKonfigurationen
   
 
-`
-public class EmailKonfigurationen {
-public static void sendMail(String subject, String content, String email, String filePath, String docuentName) throws MessagingException, IOException {
+`public class EmailKonfigurationen {
+public static void sendMail(String subject, String content, String email, String filePath, String docuentName) throws MessagingException, IOException {`
 
 	    final String username = "mail@gmail.com";
 	    final String password = "password";
@@ -126,7 +125,6 @@ public static void sendMail(String subject, String content, String email, String
 	    }    
 	}
 	}
-`
 
 Beschreibung:
 
