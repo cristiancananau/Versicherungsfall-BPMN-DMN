@@ -67,8 +67,9 @@ Im letzten Prozessschritt, von zweiten Sequenzfluss wird mithilfe eines Service 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import javax.activation.DataHandler;
-import javax.mail.BodyPart;
+import javax.activation.DataHandler;`
+
+`import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -79,9 +80,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import javax.mail.util.ByteArrayDataSource;
+import javax.mail.util.ByteArrayDataSource;`
 
-public class EmailKonfigurationen {
+`public class EmailKonfigurationen {
 
 	public static void sendMail(String subject, String content, String email, String filePath, String docuentName) throws MessagingException, IOException {
 		final String username = "mail@gmail.com";
@@ -141,8 +142,7 @@ public class EmailKonfigurationen {
 	        throw new RuntimeException(e);
 	    }    
 	}
-	} 
-	`
+	} `
 
 ## 5. Einbindung der HTML-Forms (das bedeutet Formulare)
 
