@@ -371,5 +371,4 @@ Dies ist ein beispielhaftes HTML-Formular (Hier: für die Risikobewertung). Wie 
 ![Forms](/src/main/webapp/forms/risikobewertung.PNG)
 
 
- 
-## 6. Schluss
+
