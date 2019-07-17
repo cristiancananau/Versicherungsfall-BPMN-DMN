@@ -166,7 +166,9 @@ wird die E-Mail-Adresse abgefangen. Danach folgen mit `subject` und `content` de
 
 ### Beschreibung:
 Diese Klasse übernimmt die Variablen von dem laufenden System (Cockpit) und generiert daraus ein PDF. Die `public void execute(DelegateExecution execution)` erwartet einen Parameter `execution` vom Typ `DelegateExecution`
-(https://docs.camunda.org/manual/7.8/user-guide/process-engine/delegation-code/). `DelegateExecution` ermöglicht es, im laufenden System die notwendigen Variablen abzurufen (z.B.`execution.getVariable("KundenName")`) . Danach wird ein Pfad für das PDF-Dokument erstellt. Dieser Pfad wird druch `execution.setVariable("pdfDocPath", pdfDocPath);` als Variable deklariert, wobei `"pdfDocPath"` der Variablenname im Camunda-Cockpit und `pdfDocPath` der Pfad (Wert) an sich ist. Es werden die Klasse `CreatePDFDocument` mit der Methode `creatFile` verwendet. Diese sind vor allem für den nächsten Codeausschnitt relevant.
+(https://docs.camunda.org/manual/7.8/user-guide/process-engine/delegation-code/). `DelegateExecution` ermöglicht es, im laufenden System die notwendigen Variablen abzurufen (z.B.`execution.getVariable("KundenName")`) . Danach wird ein Pfad für das PDF-Dokument erstellt. Dieser Pfad wird druch `execution.setVariable("pdfDocPath", pdfDocPath);` als Variable deklariert, wobei `"pdfDocPath"` der Variablenname im Camunda-Cockpit und `pdfDocPath` der Pfad (Wert) an sich ist. Es werden die Klasse `CreatePDFDocument` mit der Methode `creatFile` verwendet. Diese sind vor allem für den nächsten Codeausschnitt relevant. Die Verlinkung der Java-Klasse im Camunda-Modeler sieht wie folgt aus:
+
+![AngebotErstellen](/src/main/resources/angebotErstellen.PNG)
 
 ### Create PDFDokument
  	public class CreatePDFDocument {
