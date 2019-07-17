@@ -66,7 +66,7 @@ Im letzten Prozessschritt, von zweiten Sequenzfluss wird mithilfe eines Service 
 
 `public class EmailKonfigurationen {
 
-public static void sendMail(String subject, String content, String email, String filePath, String docuentName) throws MessagingException, IOException {
+public static void sendMail(String subject, String content, String email, String filePath, String docuentName) throws MessagingException, IOException {`
 
 	    final String username = "mail@gmail.com";
 	    final String password = "password";
@@ -126,7 +126,6 @@ public static void sendMail(String subject, String content, String email, String
 	    }    
 	}
 	}
-`
 
 Beschreibung:
 In dieser Klasse werden alle Konfiguration vorgenommen, die für das Versenden einer E-Mail benötigt werden. Die Methode `sendMail` erwartet fünf Parameter vom Typ String: `subject`, `content`, `email`, `filePath` und `docuentName`. Dann werden zwei Strings deklariert (`username` und `passwort`). Im Anschluss werden die Properties der E-Mail definiert. Im try-catch-Block wird versucht, eine E-Mail zu versenden. Zuerst wird dabei die E-Mail-Adresse des Absenders angegeben. Mit `message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));`
