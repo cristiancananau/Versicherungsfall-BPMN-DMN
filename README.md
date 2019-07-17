@@ -23,10 +23,7 @@ Im letzten Prozessschritt, von zweiten Sequenzfluss wird mithilfe eines Service 
 
 ## 2. Modelierung
 
-[![BPMN-DMN-Implementierung](http://i.imgur.com/Ot5DWAW.png)](https://www.youtube.com/watch?v=-7oW5CPuX0I "Everything Is AWESOME")
-
-[![BPMN-Tutorial](Video.png)](https://www.youtube.com/watch?v=-7oW5CPuX0I)
-[BPMN-Tutorial](https://www.youtube.com/watch?v=-7oW5CPuX0I).
+[![BPMN-DMN-Implementierung](http://i.imgur.com/Ot5DWAW.png)](https://www.youtube.com/watch?v=-7oW5CPuX0I "Tutorial ist hier")
 
 ---
 
