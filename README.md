@@ -53,14 +53,11 @@ Hier sollen nun der ausmodellierte BPMN-Prozess, sowie die DRD's noch einmal zus
 ## 3. Mavenprojekt-Erstellung (Video)
 [![BPMN-DMN-Implementierung](http://i.imgur.com/Ot5DWAW.png)](https://www.youtube.com/watch?v=-7oW5CPuX0I "Tutorial ist hier")
 
+### Notwendige Links:
   - https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html und https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html
   - https://www.eclipse.org/downloads/packages/release/2019-03/r/eclipse-ide-java-developers
   - https://docs.camunda.org/get-started/java-process-app/install/
   - https://docs.camunda.org/get-started/java-process-app/project-setup/
-  - Sreenshots und die Schritte
-  - Erstellung der leere Klasse JavaServlet
-  - Setzen von Umgebungsvariablen
-  - Deployment (.war-Datei auf dem Server)
 
 ## 4. Beschreibung der Klassen
 
