@@ -52,7 +52,7 @@ Hier sollen nun der ausmodellierte BPMN-Prozess, sowie die DRD's noch einmal zus
 
 ## 3. Mavenprojekt-Erstellung (Video)
 
-[![BPMN-DMN-Implementierung Part 1](/src/main/resources/Part%201.png)]( "Tutorial Part 1")
+[![BPMN-DMN-Implementierung Part 1](/src/main/resources/Part%201.png)](https://youtu.be/RKhi95_X1c8 "Tutorial Part 1")
 
 [![BPMN-DMN-Implementierung Part 2](/src/main/resources/Part%202.png)](https://youtu.be/CkzsQq1s-Y4 "Tutorial Part 2")
 
