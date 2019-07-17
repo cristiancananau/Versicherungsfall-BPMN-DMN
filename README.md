@@ -51,10 +51,15 @@ Hier sollen nun der ausmodellierte BPMN-Prozess, sowie die DRD's noch einmal zus
 ---
 
 ## 3. Mavenprojekt-Erstellung (Video)
+### [Maven-Projekte erstellen und auf der Camunda-BPM deployen - Part 1](https://youtu.be/RKhi95_X1c8)
 
 [![BPMN-DMN-Implementierung Part 1](/src/main/resources/Part%201.png)](https://youtu.be/RKhi95_X1c8 "Tutorial Part 1")
 
+### [Maven-Projekte erstellen und auf der Camunda-BPM deployen - Part 2](https://youtu.be/CkzsQq1s-Y4)
+
 [![BPMN-DMN-Implementierung Part 2](/src/main/resources/Part%202.png)](https://youtu.be/CkzsQq1s-Y4 "Tutorial Part 2")
+
+### [Maven-Projekte erstellen und auf der Camunda-BPM deployen - Part 3](https://youtu.be/2AmQRHaMdDI)
 
 [![BPMN-DMN-Implementierung Part 3](/src/main/resources/Part%203.png)](https://youtu.be/2AmQRHaMdDI "Tutorial Part 3")
 
