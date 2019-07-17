@@ -142,7 +142,7 @@ public class EmailKonfigurationen {
 	        throw new RuntimeException(e);
 	    }    
 	}
-}`
+	}`
 
 ## 5. Einbindung der HTML-Forms
 
