@@ -23,13 +23,23 @@ Im letzten Prozessschritt, von zweiten Sequenzfluss wird mithilfe eines Service 
 
 ## 2. Modelierung
 
+### kfz_Versicherung BPMN
+
 ![kfz_Versicherung](/src/main/resources/kfz_Versicherung.svg "kfz_Versicherung BPMN")
+
+### RisikobewertungFahrer BPMN
 
 ![Alt text](/src/main/resources/RisikobewertungFahrer.svg "RisikobewertungFahrer BPMN")
 
+### RisikobewertungAuto DMN
+
 ![Alt text](/src/main/resources/RisikobewertungAuto.svg "RisikobewertungAuto DMN")
 
+### RisikobewertungFahrer DMN
+
 ![Alt text](/src/main/resources/RisikobewertungFahrerDMN.svg "RisikobewertungFahrerDMN DMN")
+
+### Risikobewertunggesamt DMN
 
 ![Alt text](/src/main/resources/Risikobewertunggesamt.svg "Risikobewertunggesamt DMN")
 
