@@ -168,7 +168,7 @@ wird die E-Mail-Adresse abgefangen. Danach folgen mit `subject` und `content` de
 	}
 
 ### Beschreibung:
-Diese Klasse übernimmt die Variablen von dem laufenden System (Cockpit) und generiert daraus ein PDF. Die `public void execute(DelegateExecution execution)` erwartet einen Parameter `execution` vom Typ `DelegateExecution` und 
+Diese Klasse übernimmt die Variablen von dem laufenden System (Cockpit) und generiert daraus ein PDF. Die `public void execute(DelegateExecution execution)` erwartet einen Parameter `execution` vom Typ `DelegateExecution` und (https://docs.camunda.org/manual/7.8/user-guide/process-engine/delegation-code/)
 
 ## 5. Einbindung der HTML-Forms (das bedeutet Formulare)
 
