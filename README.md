@@ -67,9 +67,8 @@ Im letzten Prozessschritt, von zweiten Sequenzfluss wird mithilfe eines Service 
 
 `public class EmailKonfigurationen {
 	public static void sendMail(String subject, String content, String email, String filePath, String docuentName) throws MessagingException, IOException {
-		final String username = "mail@gmail.com";
+	    final String username = "mail@gmail.com";
 	    final String password = "password";
-
 	    Properties props = new Properties();
 	    props.put("mail.smtp.starttls.enable", "true");
 	    props.put("mail.smtp.auth", "true");
