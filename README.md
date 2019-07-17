@@ -74,6 +74,9 @@ Hier sollen nun der ausmodellierte BPMN-Prozess, sowie die DRD's noch einmal zus
   - https://docs.camunda.org/get-started/java-process-app/install/
   - https://docs.camunda.org/get-started/java-process-app/project-setup/
 
+
+---
+
 ## 4. Beschreibung der Klassen
 
 Im Folgenden werden nun einige Klassen beschrieben, die zur Umsetzung der gegebenen Anforderungen benötigt wurden.
@@ -299,6 +302,8 @@ Diese Klasse übernimmt die Variablen von dem laufenden System (Cockpit) und gen
 ### Beschreibung:
 Durch diese Klasse wird letztlich das PDS-Dokument erstellt, welches dem Kunden als Angebot zugesendet wird. Die Methode `creatFile` erwartet drei Parameter: `pdfDocPath`, `name` und `einstufungRisiko`. Zuerst wird mit `PdfDocument pdf = new PdfDocument(writer);` im angegebenen Pfad ein leeres PDF-Dokument erstellt. Dieses sollte eine A4-Größe haben. Nun werden die Textelemente des Dokumentes (Anschrift Versender, Anschrift Absender, Header,...) als Variablen deklariert. Man deklariert nun die einzelnen Paragraphen (=Formatierung des Dokumentes) und fügt hier die einzelnen Variablen der Textelemente ein. Die befüllten Paragraphen müssen nun in der Reihenfolge dem Dokument beigefügt werden. Jetzt deklariert man die Fußzeile (Footer). Hierzu dient die Klasse `TextFooterEventHandler`.
 
+
+---
 
 ## 5. Einbindung der HTML-Forms (das bedeutet Formulare)
 
