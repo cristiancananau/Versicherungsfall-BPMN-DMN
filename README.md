@@ -171,6 +171,104 @@ wird die E-Mail-Adresse abgefangen. Danach folgen mit `subject` und `content` de
 Diese Klasse übernimmt die Variablen von dem laufenden System (Cockpit) und generiert daraus ein PDF. Die `public void execute(DelegateExecution execution)` erwartet einen Parameter `execution` vom Typ `DelegateExecution`
 (https://docs.camunda.org/manual/7.8/user-guide/process-engine/delegation-code/). `DelegateExecution` ermöglicht es, im laufenden System die notwendigen Variablen abzurufen (z.B.`execution.getVariable("KundenName")`) . Danach wird ein Pfad für das PDF-Dokument erstellt. Dieser Pfad wird druch `execution.setVariable("pdfDocPath", pdfDocPath);` als Variable deklariert, wobei `"pdfDocPath"` der Variablenname im Camunda-Cockpit und `pdfDocPath` der Pfad (Wert) an sich ist. Es werden die Klasse `CreatePDFDocument` mit der Methode `creatFile` verwendet. Diese sind vor allem für den nächsten Codeausschnitt relevant.
 
+### Create PDFDokument
+ 	public class CreatePDFDocument {
+	
+	public static void creatFile(String pdfDocPath, String name, String einstufungRisiko) throws IOException {
+				
+			
+	       	PdfWriter writer = new PdfWriter(pdfDocPath);           
+	      
+	       	// Erstellen von Pdf-Dokument       
+	       	PdfDocument pdf = new PdfDocument(writer);              
+	      
+	       	// Erstellen von Dokument A4-Größe        
+	        Document document = new Document(pdf, PageSize.A4);   
+	        document.setMargins(70f, 70f, 70f, 70f);
+	        
+	        //Erstellen von Text
+			Text companyName = new Text("Loop GmbH | Loopingweg 1 | 12345 Loophausen").setFontSize(9).setUnderline();
+			Text personData = new Text(name +"\nMusterstraße 1"+"\n12345 Musterstadt").setFontSize(9);
+			Text angebotDatumUndUstIdNr = new Text("Angebotsdatum:   "
+													+LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+													+"\nGültig bis:   31.12.2019"+"\nUst-IdNr.:   DE123456789").setFontSize(9);
+			Text angebot = new Text("Angebot für Ihre Anfrage\n").setFontSize(12).setBold();
+			Text angebotText = new Text(einstufungRisiko).setFontSize(11);
+			Text endText = new Text("\nWir würden uns sehr freuen, wenn unser Angebot Ihre Zustimmung findet."
+									+"\nSie haben Fragen oder wünschen weitere Informationen?"
+									+"\nRufen Sie uns an – wir sind für Sie da.").setFontSize(11);
+			Text mitFreundlichen = new Text("Mit freundlichen Grüßen").setFontSize(11);
+			Text ihreLoopTeam = new Text("Ihre"+"\nLoop GmbH").setFontSize(11);
+			
+			//Erstellen von Paragraphs
+			Paragraph paragraph1 = new Paragraph().add(companyName);
+			Paragraph paragraph2 = new Paragraph().add(personData);
+			Paragraph paragraph3 = new Paragraph().setTextAlignment(TextAlignment.RIGHT).add(angebotDatumUndUstIdNr);
+			Paragraph paragraph4 = new Paragraph().add(angebot);
+			Paragraph paragraph5 = new Paragraph().add(angebotText);
+			Paragraph paragraph6 = new Paragraph().add(endText);
+			Paragraph paragraph7 = new Paragraph().add(mitFreundlichen);
+			Paragraph paragraph8 = new Paragraph().add(ihreLoopTeam);
+
+
+			//Einfügen der Paragraphe zu dem Dokument
+			document.add(paragraph1);
+			document.add(paragraph2); 
+			document.add(paragraph3); 
+			document.add(paragraph4); 
+			document.add(paragraph5); 
+			document.add(paragraph6); 
+			document.add(paragraph7); 
+			document.add(paragraph8); 
+
+	        TextFooterEventHandler eventHandler = new TextFooterEventHandler(document);
+
+	        pdf.addEventHandler(PdfDocumentEvent.END_PAGE, eventHandler);
+
+	        //letzte Seite in der Dokument
+	        eventHandler.lastPage = pdf.getLastPage();
+	        
+			// Schliesßen des Dokumentes       
+			document.close();      		
+			
+			System.out.println("Document wurde erstellt!");
+		
+	}
+	
+    static class TextFooterEventHandler implements IEventHandler {
+        Document doc;
+        PdfPage lastPage = null;
+
+        public TextFooterEventHandler(Document doc) {
+            this.doc = doc;
+        }
+
+        public void handleEvent(Event event) {
+            PdfDocumentEvent docEvent = (PdfDocumentEvent) event;
+            PdfCanvas canvas = new PdfCanvas(docEvent.getPage());
+            canvas.beginText();
+            try {
+                canvas.setFontAndSize(PdfFontFactory.createFont(StandardFonts.HELVETICA), 9);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            canvas.beginText()
+                  .moveText((doc.getRightMargin()+5), (doc.getBottomMargin()+50))
+                  .showText("Telefon:   01234/987654                                                  Loop GmbH")
+		          .moveText(0, (doc.getBottomMargin()-80))
+		          .showText("Fax:         01234/987655                                                  Bank Loophausen")
+		          .moveText(0, (doc.getBottomMargin()-90))
+		          .showText("Email:       loopgmbhwithservice@gmail.com                   BLZ: 30033301n")
+		          .moveText(0, (doc.getBottomMargin()-80))
+		          .showText("Web:         www.loop-gmbh.com                                       KTO: 32165498")
+                  .endText()
+                  .release();
+	      
+		}
+	    }  
+	}
+
+
 ## 5. Einbindung der HTML-Forms (das bedeutet Formulare)
 
  ---
