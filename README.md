@@ -85,8 +85,8 @@ import javax.mail.util.ByteArrayDataSource;
 public class EmailKonfigurationen {
 
 	public static void sendMail(String subject, String content, String email, String filePath, String docuentName) throws MessagingException, IOException {
-		final String username = "loopgmbhwithservice@gmail.com";
-	    final String password = "loopgmbh";
+		final String username = "mail@gmail.com";
+	    final String password = "password";
 
 	    Properties props = new Properties();
 	    props.put("mail.smtp.starttls.enable", "true");
@@ -142,7 +142,7 @@ public class EmailKonfigurationen {
 	        throw new RuntimeException(e);
 	    }    
 	}
-}`
+	}`
 
 ## 5. Einbindung der HTML-Forms
 
