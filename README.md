@@ -124,7 +124,7 @@ public static void sendMail(String subject, String content, String email, String
 	        throw new RuntimeException(e);
 	    }    
 	}
-	}
+	}`
 
 Beschreibung:
 
