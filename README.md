@@ -23,6 +23,8 @@ Im letzten Prozessschritt, von zweiten Sequenzfluss wird mithilfe eines Service 
 
 ## 2. Modelierung
 
+Hier sollen nun der ausmodellierte BPMN-Prozess, sowie die DRD's noch einmal zusammenfassen präsentiert werden.
+
 ### kfz_Versicherung BPMN
 
 ![kfz_Versicherung](/src/main/resources/kfz_Versicherung.svg "kfz_Versicherung BPMN")
@@ -61,6 +63,9 @@ Im letzten Prozessschritt, von zweiten Sequenzfluss wird mithilfe eines Service 
   - Deployment (.war-Datei auf dem Server)
 
 ## 4. Beschreibung der Klassen
+
+Im folgenden werden nun einige Klassen beschrieben, die zur Umsetzung der gegebenen Anforderungen benötigt wurden.
+
   ### EmailKonfigurationen
   
 
