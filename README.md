@@ -130,6 +130,39 @@ Beschreibung:
 In dieser Klasse werden alle Konfiguration vorgenommen, die für das Versenden einer E-Mail benötigt werden. Die Methode `sendMail` erwartet fünf Parameter vom Typ String: `subject`, `content`, `email`, `filePath` und `docuentName`. Dann werden zwei Strings deklariert (`username` und `passwort`). Im Anschluss werden die Properties der E-Mail definiert. Im try-catch-Block wird versucht, eine E-Mail zu versenden. Zuerst wird dabei die E-Mail-Adresse des Absenders angegeben. Mit `message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));`
 wird die E-Mail-Adresse abgefangen. Danach folgen mit `subject` und `content` der Betreff und Nachrichtentext der E-Mail. In der If-Else-Bedingung wird überprüft, ob der Pfad für eine angehängte PDF-Datei angegeben wurde oder nicht. Wurde dieser angegeben, so wird die Datei als `ByteArrayDataSource` eingelesen und als Anhang der E-Mail beigefügt. Ist kein Pfad vorhanden, so wird die E-Mail ohne Anhang versendet.
 
+
+###Angebot erstellen
+
+`public class AngebotErstellen implements JavaDelegate {
+	
+  public void execute(DelegateExecution execution) throws Exception {
+
+	  String kundeName = (String) execution.getVariable("KundenName");
+	  String kundeVorname = (String) execution.getVariable("KundenVorname");
+	  String einstufungRisiko = (String) execution.getVariable("einstufungRisiko");
+
+      Path currentRelativePath = Paths.get("");
+      String stringPath = currentRelativePath.toRealPath().toString();
+      stringPath = stringPath.substring(0, stringPath.lastIndexOf("\\")+1);
+      String docuentName = kundeName+"-"+kundeVorname+"-Angebot"+".pdf";
+      String pdfDocPath = stringPath+"webapps\\versicherungsfall\\"+docuentName;
+     
+      boolean checkIfExist = new File(pdfDocPath).exists();
+      
+      if(checkIfExist) {
+    	  docuentName = docuentName.replaceFirst("[.][^.]+$", "")+"-1.pdf";
+    	  pdfDocPath = pdfDocPath.replaceFirst("[.][^.]+$", "")+"-1.pdf";
+      }
+      
+      execution.setVariable("pdfDocPath", pdfDocPath);
+      execution.setVariable("docuentName", docuentName);
+      
+      CreatePDFDocument.creatFile(pdfDocPath, kundeName+" "+kundeVorname, einstufungRisiko);
+      
+      System.out.println(pdfDocPath);
+  }
+}`
+
 ## 5. Einbindung der HTML-Forms (das bedeutet Formulare)
 
  ---
